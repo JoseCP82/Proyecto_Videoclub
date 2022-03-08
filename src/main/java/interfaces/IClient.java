@@ -17,7 +17,7 @@ public interface IClient {
 	String getPhone();
 
 	// Setea el número de teléfono del cliente
-	void setPhone(int phone);
+	void setPhone(String phone);
 
 	// Obtiene la fecha y hora de alta del cliente
 	String getTime();
