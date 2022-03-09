@@ -44,15 +44,30 @@ public class Gui implements IGUI {
 	 * muestra por consola el menu de Articulos.
 	 */
 	public void showProductMenu() {
-		// TODO Auto-generated method stub
-
+		this.printLine("\\\\============Productos============//");
+		this.printLine("@~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@");
+		this.printLine("|   1. Insertar producto.           |");
+		this.printLine("|   2. Buscar.                      |");
+		this.printLine("|   3. Eliminar.                    |");
+		this.printLine("|   3. Actualizar.                  |");
+		this.printLine("|   0. Volver atras.                |");
+		this.printLine("@~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@");
+		this.printLine("//============Productos============\\\\");
 	}
 
 	/**
 	 * muestra por consola el menu de reservas.
 	 */
 	public void showReservationMenu() {
-		// TODO Auto-generated method stub
+		this.printLine("\\\\==========Reservas==============//");
+		this.printLine("@~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@");
+		this.printLine("|   1. Introducir reserva.         |");
+		this.printLine("|   2. Buscar reserva.             |");
+		this.printLine("|   3. Eliminar reserva.           |");
+		this.printLine("|   4  Actualizar reserva.         |");
+		this.printLine("|   0. Volver atras.               |");
+		this.printLine("@~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@");
+		this.printLine("//============Reservas============\\\\");
 
 	}
 
@@ -73,11 +88,27 @@ public class Gui implements IGUI {
 	}
 
 	public String validateString(String message) {
-		// TODO Auto-generated method stub
+		IOUtils.validateString(message);
 		return null;
 	}
 
 	public String validatedni(String message) {
 		return IOUtils.validateDni(message);
 	}
+	
+	public String validateName(String message) {
+		IOUtils.validateName(message);
+		return null;
+	}
+	
+	public String validateKey(String message) {
+		IOUtils.validateKey(message);
+		return null;
+	}
+	
+	public String validatePhone(String message) {
+		IOUtils.validatePhone(message);
+		return null;
+	}
+	
 }

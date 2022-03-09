@@ -191,7 +191,7 @@ public class IOUtils {
 	/**
 	 * Comprueba que el DNI introducido sea correcto
 	 * 
-	 * @param dni que se introducirá
+	 * @param frase que se introducirá
 	 * @return devuelve que el dni este escrito de forma correcta.
 	 */
 	public static String validateDni(String frase) {
@@ -211,6 +211,99 @@ public class IOUtils {
 
 		return dni;
 
+	}
+
+	/**
+	 * valida que la frase introducida solo sean numeros
+	 * 
+	 * @param frase numero a introducir
+	 * @return devuelve la cadena que solo admite numeros
+	 */
+	public static String validatePhone(String frase) {
+		Scanner sc = new Scanner(System.in);
+		boolean invalido = false;
+		String number = "";
+
+		do {
+			System.out.println(frase);
+			number = sc.next();
+			if (number.matches("^[0-9][^\\Sa-zA-Z]$")) {
+				invalido = true;
+			} else {
+				System.out.println("no se permiten letras");
+			}
+		} while (!invalido);
+
+		return number;
+	}
+
+	/**
+	 * comprueba que se introduzcan solo texto con espacios
+	 * 
+	 * @param frase texto que se introducirá
+	 * @return devuelve el texto
+	 */
+	public static String validateString(String frase) {
+		Scanner sc = new Scanner(System.in);
+		boolean invalido = false;
+		String txt = "";
+		do {
+			System.out.println(frase);
+			txt = sc.next();
+			if (txt.matches("^[a-zA-Z\\s]\\D$")) {
+				invalido = true;
+			} else {
+				System.out.println("no se permite numeros");
+			}
+		} while (!invalido);
+
+		return txt;
+	}
+
+	/**
+	 * comprueba que la clave tenga tres letras en mayuscula un guion y 4 digitos
+	 * @param frase que se introducira
+	 * @return devuelve la clave
+	 */
+	public static String validateKey(String frase) {
+	
+		Scanner sc = new Scanner(System.in);
+		boolean invalido = false;
+		String key= "";
+		do {
+			System.out.println(frase);
+			key = sc.next();
+			if (key.matches("^[A-Z]{3,3}[-]{1,1}[0-9]{4,4}$")) {
+				invalido = true;
+			} else {
+				System.out.println("la clave tiene que estar en este formato (AAA-9999) ");
+			}
+		} while (!invalido);
+		
+		return key;
+	}
+
+	/**
+	 * comprueba que el nombre introducido empiece por mayuscula y tenga 2 digitos
+	 * 
+	 * @param frase nombre que se introducira
+	 * @return devuelve el nombre
+	 */
+	public static String validateName(String frase) {
+		Scanner sc = new Scanner(System.in);
+		boolean invalido = false;
+		String name = "";
+		do {
+			System.out.println(frase);
+			name = sc.next();
+			if (name.matches("^[A-Z][a-z][0-9]{2,2}$")) {
+				invalido = true;
+			} else {
+				System.out.println("Tiene que empezar en Mayuscula y como maximo puede tener 2 digitos");
+			}
+		} while (!invalido);
+
+		return name;
 	}
 
 }
