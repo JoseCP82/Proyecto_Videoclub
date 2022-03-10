@@ -1,8 +1,6 @@
 package interfaces;
 
 public interface IProductStore {
-	// Obtiene una instancia de productStore (Patrón Singleton)
-	IProductStore getInstance();
 
 	// Agrega un producto nuevo
 	boolean addProduct(IProduct p);
