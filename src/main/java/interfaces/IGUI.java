@@ -22,4 +22,5 @@ public interface IGUI {
 
 	// Pide con un mensaje que se introduzca una cadena de caracteres
 	String validateString(String message);
+	
 }

@@ -11,7 +11,7 @@ public interface IClientStore {
 	IClient searchClient(String id);
 
 	// Actualiza los datos de un cliente
-	boolean updateClient(String name, int phone);
+	boolean updateClient(String id, String name, String phone);
 
 	// Elimina un cliente
 	boolean removeClient(IClient c);
