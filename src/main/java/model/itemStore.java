@@ -5,14 +5,14 @@ import java.util.HashSet;
 import interfaces.IItem;
 import interfaces.IItemStore;
 
-public class itemStore {
+public class ItemStore {
 private HashSet<Item> items;
 	
 	
 	
 	
 
-	public itemStore() {
+	public ItemStore() {
 		 items = new HashSet<Item>();
 	}
 
@@ -34,7 +34,7 @@ private HashSet<Item> items;
 		return e;
 	}
 
-	public boolean updateProduct(String name, String description, float price) {
+	public boolean updateItem(String name, String description, float price) {
 		boolean valid = false;
 		Item search = searchItem(name);
 		
