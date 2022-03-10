@@ -46,7 +46,7 @@ private HashSet<Item> items;
 		return valid;
 	}
 
-	public boolean removeProduct(Item i) {
+	public boolean removeItem(Item i) {
 		boolean valid = items.remove(i);
 		return valid;
 	}
