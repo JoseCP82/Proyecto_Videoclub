@@ -1,9 +1,7 @@
 package interfaces;
 
 public interface IItemStore {
-	// Obtiene una instancia de itemStore (Patrón Singleton)
-	IItemStore getInstance();
-
+	
 	// Agrega un item nuevo
 	boolean addItem(IItem i);
 
