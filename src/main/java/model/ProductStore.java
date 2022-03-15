@@ -31,15 +31,24 @@ public class ProductStore implements Serializable  {
 	public ProductStore() {
 		 productos = new HashSet<Product>();
 	}
-
+/**
+ * Devuelve El arrayList
+ * @return
+ */
 	public Set<Product> getProducto() {
 		return productos;
 	}
-
+/**
+ * Metodo que sirve para setear El arrayList
+ * @param producto
+ */
 	public void setProducto(Set<Product> producto) {
 		this.productos = productos;
 	}
-
+/**
+ * Contructor Full equip
+ * @param producto
+ */
 	public ProductStore(Set<Product> producto) {
 		super();
 		this.productos = productos;
@@ -71,7 +80,12 @@ public class ProductStore implements Serializable  {
 		
 		return valid;
 	}
-		
+		/**
+		 * Cambia los parametros a un Producto
+		 * @param key La key por el cual buscas el producto
+		 * @param name El nombre que le vas a cambiar
+		 * @return Devuelve True si lo a cambiado correctamente
+		 */ 
 	public boolean updateProduct(String key, String name) {
 		boolean valid =false;
 		Product search = searchProduct(key);
@@ -103,7 +117,9 @@ public class ProductStore implements Serializable  {
 		
 		return e;
 	}
-	
+	/**
+	 * Metodo que sirve para mostrar el array por pantalla
+	 */
 	public String toString() {
 		String cadena="";
 		for(Product o : productos) {
@@ -112,7 +128,10 @@ public class ProductStore implements Serializable  {
 		return cadena;
 	}
 
-
+/**
+ * Guarda los productos en un xml
+ * @param url
+ */
 	public void saveProducts(String url) {
 		JAXBContext contexto;
 		try {
@@ -128,7 +147,10 @@ public class ProductStore implements Serializable  {
 	}
 		
 	
-
+	/**
+	 * Carga los Productos guardados en el xml
+	 * @param url
+	 */
 	public void loadProducts(String url) {
 		JAXBContext contexto;
 		try {
@@ -140,6 +162,15 @@ public class ProductStore implements Serializable  {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	/**
+	 * 
+	 * @return  Este metodo devuelve si la lista tiene algun producto o no
+	 */
+	public boolean isEmpty() {
+		
+		return productos.isEmpty();
+		
 	}
 
 
