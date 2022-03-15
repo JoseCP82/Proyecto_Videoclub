@@ -5,11 +5,12 @@ import java.util.Calendar;
 
 import gui.Gui;
 import model.Client;
+import model.ClientStore;
 
 public class ClientController {
 
 	Gui gui = new Gui();
-	// ClientStore cs = new ClientStore();
+	ClientStore cs = new ClientStore();
 
 	/**
 	 * Método que inicia el uso de la clase. Muestra el menú referente a las
@@ -18,11 +19,10 @@ public class ClientController {
 	public void run() {
 		int option = -1;
 		do {
-			// gui.showClientMenu();
+			gui.showClientMenu();
 			option = utils.IOUtils.validaEntero("Elija una opción: ", 0, 5); //Modificar y usar el metodo de la clase Gui
 			switchOption(option);
 		} while (option != 0);
-		new AppController().appInit();
 	}
 
 	/**
@@ -37,49 +37,41 @@ public class ClientController {
 				insertClient();
 				break;
 			case 2:
-				/*
 				if(!cs.isEmpty()) {
 					searchClient();
 				}
 				else {
 					gui.showMessage("No existen clientes aún.");
 				}
-				*/
 				break;
 			case 3:
-				/*
 				if(!cs.isEmpty()) {
 					updateClient();
 				}
 				else {
 					gui.showMessage("No existen clientes aún.");
 				}
-				*/
 				break;
 			case 4:
-				/*
 				if(!cs.isEmpty()) {
 					removeClient();
 				}
 				else {
 					gui.showMessage("No existen clientes aún.");
 				}
-				*/
 				break;
 			case 5:
-				/*
 				if(!cs.isEmpty()) {
 					gui.showMessage(cs.toString());
 				}
 				else {
 					gui.showMessage("No existen clientes aún.");
 				}
-				*/
 				break;
 			case 0:
 				break;
 			default:
-				// gui.showMessage("Opción incorrecta.");
+				gui.showMessage("Opción incorrecta.");
 		}
 	}
 	
@@ -88,8 +80,7 @@ public class ClientController {
 	 * Indica si la acción se realizó o no con éxito.
 	 */
 	private void insertClient() {
-		/*
-		String id = gui.validateDni("Inserte el Dni del cliente: ");
+		String id = gui.validatedni("Inserte el Dni del cliente: ");
 		String name = gui.validateString("Inserte el nombre del cliente: ");
 		String phone = gui.validatePhone("Inserte el teléfono del cliente: ");
 		String date = new SimpleDateFormat("yyyy/mm/dd hh:mm:ss").format(Calendar.getInstance().getTime());
@@ -99,7 +90,6 @@ public class ClientController {
 		else {
 			gui.showMessage("No se pudo dar de alta al cliente.");
 		}
-		*/
 	}
 
 	/**
@@ -108,31 +98,28 @@ public class ClientController {
 	 * @return Devuelve el cliente encontrado o null si no existe.
 	 */
 	
-	/*
 	public Client searchClient() {
-		Client c=null;
-		String id = gui.leeCadenaVacia("Inserte el DNI del cliente a buscar: ");
-		if(c=cs.searchClient(id)!=null) {
-			gui.showMessage(c);
+		String id = gui.validatedni("Inserte el DNI del cliente a buscar: ");
+		Client c=cs.searchClient(id);
+		if(c!=null) {
+			gui.showMessage(c.toString());
 		}
 		else {
 			gui.showMessage("Cliente no encontrado.");
 		}
 		return c;
 	}
-	*/
 	
 	/*
 	 * Actualiza el nombre y/o teléfono de un cliente existente.
 	 */
-	/*
 	public void updateClient() {
 		Client c = searchClient();
 		boolean result = false;
 		if(c!=null) {
 			String name = gui.validateString("Inserte el nuevo  nombre del cliente: ");
 			String phone = gui.validatePhone("Inserte el nuevo teléfono del cliente: ");
-			result = cs.updateClient(c.getId, name, phone);
+			result = cs.updateClient(c.getId(), name, phone);
 		}
 		if(result) {
 			gui.showMessage("Datos del cliente actualizados con éxito.");
@@ -141,17 +128,15 @@ public class ClientController {
 			gui.showMessage("No se pudieron actualizar los datos del cliente.");
 		}
 	}
-	*/
 	
 	/*
 	 * Da de baja a un cliente existente.
 	 */
-	/*
 	public void removeClient() {
 		Client c = searchClient();
 		boolean result = false;
 		if(c!=null){
-			result=cs.removeClient();
+			result=cs.removeClient(c);
 		}
 		if(result) {
 			gui.showMessage("Cliente dado de baja con éxito.");
@@ -160,5 +145,4 @@ public class ClientController {
 			gui.showMessage("No se pudo dar de baja al cliente.");
 		}
 	}
-	*/
 }
