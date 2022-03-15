@@ -1,11 +1,12 @@
 package controller;
 
 import gui.Gui;
+import model.Item;
 
 public class ItemController {
 	
 	Gui gui = new Gui();
-	// ItemStore its = new ItemStore();
+	ItemStore its = new ItemStore();
 
 	/**
 	 * Método que inicia el uso de la clase. Muestra el menú referente a las
@@ -14,11 +15,10 @@ public class ItemController {
 	public void run() {
 		int option = -1;
 		do {
-			// gui.showItemMenu();
+			gui.showItemMenu();
 			option = utils.IOUtils.validaEntero("Elija una opción: ", 0, 5); //Modificar y usar el metodo de la clase Gui
 			switchOption(option);
 		} while (option != 0);
-		new AppController().appInit();
 	}
 
 	/**
@@ -33,44 +33,36 @@ public class ItemController {
 				insertItem();
 				break;
 			case 2:
-				/*
 				if(!its.isEmpty()) {
 					searchItem();
 				}
 				else {
 					gui.showMessage("No existen copias aún.");
 				}
-				*/
 				break;
 			case 3:
-				/*
 				if(!its.isEmpty()) {
 					updateItem();
 				}
 				else {
 					gui.showMessage("No existen copias aún.");
 				}
-				*/
 				break;
 			case 4:
-				/*
 				if(!its.isEmpty()) {
 					removeItem();
 				}
 				else {
 					gui.showMessage("No existen copias aún.");
 				}
-				*/
 				break;
 			case 5:
-				/*
 				if(!its.isEmpty()) {
 					gui.showMessage(its.toString());
 				}
 				else {
 					gui.showMessage("No existen copias aún.");
 				}
-				*/
 				break;
 			case 0:
 				break;
@@ -84,17 +76,15 @@ public class ItemController {
 	 * Indica si la acción se realizó o no con éxito.
 	 */
 	private void insertItem() {
-		/*
-		String name = gui.leeCadenaVacia("Inserte el nombre de la copia: ");
-		String description = gui.leeCadena("Inserte la descripción de la copia: ");
-		float price = gui.validateFloat("Inserte el precio de la copia: ");:
+		String name = gui.validateString("Inserte el nombre de la copia: ");
+		String description = gui.validateString("Inserte la descripción de la copia: ");
+		float price = gui.validateFloat("Inserte el precio de la copia: ");
 		if(its.addItem(new Item(name,description,price))) {
 			gui.showMessage("Copia almacenada correctamente.");
 		}
 		else {
 			gui.showMessage("No se pudo almacenar la copia.");
 		}
-		*/
 	}
 
 	/**
@@ -102,47 +92,40 @@ public class ItemController {
 	 * 
 	 * @return Devuelve la copia encontrada o null si no existe.
 	 */
-	
-	/*
 	public Item searchItem() {
-		Item i=null;
-		String name = gui.leeCadenaVacia("Inserte el nombre de la copia a buscar: ");
-		if(i=its.searchItem(name)!=null) {
-			gui.showMessage(i);
+		String name = gui.validateString("Inserte el nombre de la copia a buscar: ");
+		Item i=its.searchItem(name);
+		if(i!=null) {
+			gui.showMessage(i.toString());
 		}
 		else {
 			gui.showMessage("Copia no encontrada.");
 		}
 		return i;
 	}
-	*/
 	
 	/*
 	 * Actualiza la descripción y/o el precio de una copia existente.
 	 */
-	
-	/*
 	public void updateItem() {
-		Item i = null;
 		boolean result = false;
-		if(i=searchItem()!=null) {
+		Item i = searchItem();
+		if(i!=null) {
 			String description = gui.validateString("Inserte la nueva descripción de la copia: ");
 			float price = gui.validateFloat("Inserte el nuevo precio de la copia: ");
-			result = its.updateItem(name, description, price);
+			result = its.updateItem(i.getName(), description, price);
 		}
 		if(result) {
-			gui.showMessage("Datos de la copia actualizados con éxito.);
+			gui.showMessage("Datos de la copia actualizados con éxito.");
 		}
 		else {
 			gui.showMessage("No se pudieron actualizar los datos de la copia.");
 		}
 	}
-	*/
 	
 	/*
 	 * Da de baja una copia existente.
 	 */
-	/*
 	public void removeItem() {
 		Item i = its.removeItem(searchItem());
 		if(i!=null) {
@@ -152,5 +135,4 @@ public class ItemController {
 			gui.showMessage("No se pudo eliminar la copia.");
 		}
 	}
-	*/
 }

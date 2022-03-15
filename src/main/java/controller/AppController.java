@@ -14,7 +14,7 @@ public class AppController implements IAppController{
 	public void appInit() {
 		int option=-1;
 		do {
-			//gui.showMainMenu();
+			gui.showMainMenu();
 			option=utils.IOUtils.validaEntero("Elija una opción: ",0,4); //Modificar y usar el metodo de la clase Gui
 			switchOption(option);
 		}while(option!=0);
@@ -40,10 +40,10 @@ public class AppController implements IAppController{
 				new ReservationController().run();
 				break;
 			case 0:
-				//gui.showMessage("Aplicación finalizada.\nHasta pronto.");
+				gui.showMessage("Aplicación finalizada.\nHasta pronto.");
 				break;
 			default:
-				//gui.showMessage("Opción incorrecta.");
+				gui.showMessage("Opción incorrecta.");
 		}
 	}
 }
