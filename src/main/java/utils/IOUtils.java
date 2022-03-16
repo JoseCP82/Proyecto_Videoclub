@@ -13,7 +13,7 @@ public class IOUtils {
 	 * @param hace referencia a la frase que mostrar� para pedir el valor.
 	 * @return devuelve un numero decimal positivo v�lido.
 	 */
-	public static float validaFloatPositivo(String frase) {
+	public static float validatePositiveFloat(String frase) {
 		Scanner sc = new Scanner(System.in);
 		float numero = 0;
 		boolean valido = false;
@@ -41,7 +41,7 @@ public class IOUtils {
 	 * @param hace referencia a la frase que mostrar� para pedir el valor
 	 * @return devuelve un numero entero v�lido
 	 */
-	public static int validaEntero(String frase) {
+	public static int validateInt(String frase) {
 		Scanner sc = new Scanner(System.in);
 		int numero = 0;
 		boolean valido = false;
@@ -67,7 +67,7 @@ public class IOUtils {
 	 * @param hace referencia a la frase que mostrar� para pedir el valor.
 	 * @return devuelve un numero entero positivo v�lido.
 	 */
-	public static int validaEnteroPositivo(String frase) {
+	public static int validatePositiveInt(String frase) {
 		Scanner sc = new Scanner(System.in);
 		int numero = 0;
 		boolean valido = false;
@@ -99,7 +99,7 @@ public class IOUtils {
 	 * @param Rango maximo en el que puede estar el numero.
 	 * @return devuelve un numero entero positivo v�lido.
 	 */
-	public static int validaEntero(String frase, int minimo, int maximo) {
+	public static int validateRangeInt(String frase, int minimo, int maximo) {
 		Scanner sc = new Scanner(System.in);
 		int numero = 0, aux = 0;
 		boolean valido = false;
@@ -132,7 +132,7 @@ public class IOUtils {
 	 * Muestra por consola "Pulsa intro" y solo acepta presionar dicha tecla para
 	 * continuar
 	 */
-	public static void pulsaIntro() {
+	public static void pressIntro() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Pulsa intro para continuar...");
 		sc.nextLine();
@@ -144,7 +144,7 @@ public class IOUtils {
 	 * 
 	 * @return el string introducido
 	 */
-	public static String leeString(String texto) {
+	public static String readString(String texto) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print(texto);
 		return sc.nextLine();
@@ -155,7 +155,7 @@ public class IOUtils {
 	 * 
 	 * @return el string introducido
 	 */
-	public static String leeStringVacio(String texto) {
+	public static String readEmptyString(String texto) {
 		Scanner sc = new Scanner(System.in);
 		String result = "";
 		do {
@@ -201,7 +201,7 @@ public class IOUtils {
 		do {
 			System.out.println(frase);
 			dni = sc.next();
-			leeStringVacio(dni);
+			readEmptyString(dni);
 			if (dni.matches("^[0-9]{8}[\\w]{1}$")) {
 				invalido = true;
 			} else {

@@ -56,7 +56,7 @@ public class Gui implements IGUI {
 	}
 
 	/**
-	 * muestra por consola el menu de reservas.
+	 * muestra por consola el menu de Reservas.
 	 */
 	public void showReservationMenu() {
 		this.printLine("\\\\==========Reservas==============//");
@@ -71,44 +71,85 @@ public class Gui implements IGUI {
 
 	}
 
-	
-	public String showMessage(String message) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * muestra por pantalla el menu de Copias.
+	 */
+	public void showItemMenu() {
+		this.printLine("\\\\==========COPIAS==============//");
+		this.printLine("@~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@");
+		this.printLine("|   1. Introducir copia.           |");
+		this.printLine("|   2. Buscar copia.               |");
+		this.printLine("|   3. Eliminar reserva.           |");
+		this.printLine("|   4  Actualizar reserva.         |");
+		this.printLine("|   0. Volver atras.               |");
+		this.printLine("@~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@");
+		this.printLine("//============COPIAS============\\\\");
 	}
 
+	/**
+	 * muestra por pantalla el mensaje.
+	 */
+	public void showMessage(String message) {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * muestra un mensaje que valida que sea decimal.
+	 */
 	public float validateFloat(String message) {
 		// TODO Auto-generated method stub
-		IOUtils.validaFloatPositivo(message);
-		return 0;
+
+		return IOUtils.validatePositiveFloat(message);
 	}
 
+	/**
+	 * muestra un mensaje que valida que sea entero.
+	 */
 	public int validateInt(String message) {
-		return 0;
+		return IOUtils.validateInt(message);
 	}
 
+	/**
+	 * muestra un mensaje que valida que sea una cadena.
+	 */
 	public String validateString(String message) {
-		IOUtils.validateString(message);
-		return null;
+
+		return IOUtils.validateString(message);
 	}
 
-	public String validatedni(String message) {
+	/**
+	 * muestra un mensaje que valida que comprueba que se introduzca un dni valido.
+	 */
+	public String validateDni(String message) {
 		return IOUtils.validateDni(message);
 	}
-	
+
+	/**
+	 * 
+	 * @param message valida un nombre introducido.
+	 * @return devuelve un nombre que sea correcto.
+	 */
 	public String validateName(String message) {
-		IOUtils.validateName(message);
-		return null;
+		return IOUtils.validateName(message);
 	}
-	
+
+	/**
+	 * 
+	 * @param message valida una key que permite identificar un objeto.
+	 * @return devuelve la key introducida y que sea corecta.
+	 */
 	public String validateKey(String message) {
-		IOUtils.validateKey(message);
-		return null;
+
+		return IOUtils.validateKey(message);
 	}
-	
+
+	/**
+	 * 
+	 * @param message valida que se introduzca un número de teléfono.
+	 * @return devuelve el conjunto introducido y sea correcto.
+	 */
 	public String validatePhone(String message) {
-		IOUtils.validatePhone(message);
-		return null;
+
+		return IOUtils.validatePhone(message);
 	}
-	
 }
