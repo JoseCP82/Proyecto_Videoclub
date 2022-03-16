@@ -91,6 +91,7 @@ public class Gui implements IGUI {
 	 */
 	public void showMessage(String message) {
 		// TODO Auto-generated method stub
+		System.out.println(message);
 	}
 
 	/**
