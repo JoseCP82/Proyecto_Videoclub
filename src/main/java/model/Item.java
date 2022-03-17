@@ -7,6 +7,20 @@ public class Item extends Product implements IItem {
 	private String Description;
 	private float price;
 	
+	
+	
+	public Item() {
+		super();
+		Name = "";
+		Description = "";
+		price = -1;
+	}
+	public Item(String name, String description, float price) {
+		super();
+		Name = name;
+		Description = description;
+		this.price = price;
+	}
 	/**
 	 * Obtine el nombre del Item
 	 * 
