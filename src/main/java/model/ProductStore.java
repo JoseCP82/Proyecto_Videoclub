@@ -59,7 +59,7 @@ public class ProductStore implements Serializable  {
 
 	
 	/**
-	 * Añade un producto al arraylist
+	 * Añade un producto a la coleccion
 	 * @param p El producto que le pasas
 	 * @return True si a sido añadido o false si no a sido  añadido.
 	 */
@@ -69,7 +69,7 @@ public class ProductStore implements Serializable  {
 		return valid;
 	}
 	/**
-	 * Elimina un producto  del arraylist
+	 * Elimina un producto  de la coleccion
 	 * 
 	 * @param p El producto que le pasas. 
 	 * @return True si a sido eliminado o false si no a sido encontrado y por lo tanto no lo a eliminado.
@@ -118,7 +118,7 @@ public class ProductStore implements Serializable  {
 		return e;
 	}
 	/**
-	 * Metodo que sirve para mostrar el array por pantalla
+	 * Metodo que sirve para mostrar la coleccion por pantalla
 	 */
 	public String toString() {
 		String cadena="";

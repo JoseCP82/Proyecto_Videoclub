@@ -11,7 +11,7 @@ import javax.xml.bind.Unmarshaller;
 import interfaces.IItem;
 import interfaces.IItemStore;
 
-public class ItemStore {
+public class ItemStore implements IItemStore {
 private HashSet<Item> items;
 	
 	
@@ -24,14 +24,16 @@ private HashSet<Item> items;
 
 	
 /**
- * Este metodo añade un item al arraylist
+ * Este metodo añade un item a la coleccion
  * @param i el item el que vamos a añadir
  * @return Devuelve true si se a añadido con facilidad o false si no se a añadido
  */
-	public boolean addItem(Item i) {
-		boolean valid = items.add(i);
+	public boolean addItem(IItem i) {
+		// TODO Auto-generated method stub
+		boolean valid = items.add((Item) i);
 		return valid;
 	}
+
 	/**
 	 * Sirve para buscar un Item por su clave que en este caso seria la key
 	 * @param key La clave del Item por el cual vas a buscar
@@ -54,7 +56,8 @@ private HashSet<Item> items;
  * @param price El precio que le cambias
  * @return Devuelve true si se a cambiado correctamente
  */
-	public boolean updateItem(String name, String description, float price) {
+	public boolean updateProduct(String name, String description, float price) {
+		// TODO Auto-generated method stub
 		boolean valid = false;
 		Item search = searchItem(name);
 		
@@ -64,14 +67,16 @@ private HashSet<Item> items;
 			valid=true;
 		}
 		return valid;
+		
 	}
 	/**
-	 * Elimina un producto  del arraylist
+	 * Elimina un producto  de la colección
 	 * 
 	 * @param p El Item que le pasas. 
 	 * @return True si a sido eliminado o false si no a sido encontrado y por lo tanto no lo a eliminado.
 	 */
-	public boolean removeItem(Item i) {
+	public boolean removeProduct(IItem i) {
+		// TODO Auto-generated method stub
 		boolean valid = items.remove(i);
 		return valid;
 	}
@@ -79,26 +84,31 @@ private HashSet<Item> items;
  * Guarda los Item en un xml
  * @param url
  */
-	public void saveItem(String url) {
-		JAXBContext contexto;
-		try {
-			contexto=JAXBContext.newInstance(ItemStore.class);
-			Marshaller m = contexto.createMarshaller();
-			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-			m.marshal(this, new File(url));
-		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	
+		public void saveItems(String url) {
+			// TODO Auto-generated method stub
+			JAXBContext contexto;
+			try {
+				contexto=JAXBContext.newInstance(ItemStore.class);
+				Marshaller m = contexto.createMarshaller();
+				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+				m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+				m.marshal(this, new File(url));
+			} catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
-	}
+	
 		
 	
 /**
  * Carga los Item guardados en el xml
  * @param url
  */
-	public void loadItem(String url) {
+	public void loadItems(String url) {
+		// TODO Auto-generated method stub
 		JAXBContext contexto;
 		try {
 			contexto=JAXBContext.newInstance(ItemStore.class);
@@ -109,8 +119,8 @@ private HashSet<Item> items;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
+		
+	}	
 	/**
 	 * 
 	 * @return  Este metodo devuelve si la lista tiene algun producto o no
@@ -120,6 +130,22 @@ private HashSet<Item> items;
 		return items.isEmpty();
 		
 	}
+
+
+	
+
+	
+
+	
+
+
+	
+
+
+	
+
+
+	
 }
 
 
