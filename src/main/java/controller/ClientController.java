@@ -5,11 +5,12 @@ import java.util.Calendar;
 
 import gui.Gui;
 import model.Client;
+import model.ClientStore;
 
 public class ClientController {
 
 	Gui gui = new Gui();
-	// ClientStore cs = new ClientStore();
+	ClientStore cs = new ClientStore();
 
 	/**
 	 * Método que inicia el uso de la clase. Muestra el menú referente a las

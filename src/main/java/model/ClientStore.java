@@ -21,8 +21,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ClientStore implements Serializable  {
 
 	private static final long serialVersionUID = 1L;
+	//hashset para guardar los clientes
 	private HashSet<Client> clientes;
 	
+	
+	//Constructor por defecto
 	public ClientStore() {
 		clientes = new HashSet<Client>();
 	}
@@ -81,6 +84,7 @@ public class ClientStore implements Serializable  {
 		return valid;
 	}
 	
+	//Devuelve todos los clientes guardados en el Hashset
 	public String toString() {
 		String cadena="";
 		for(Client o: clientes) {
@@ -89,6 +93,11 @@ public class ClientStore implements Serializable  {
 		return cadena;
 	}
 	
+	
+	/**
+	 * guarda los clientes del hashset en un fiechero xml
+	 * @param url
+	 */
 	public void saveFile(String url) {
 		JAXBContext contexto;
 		try {
@@ -103,6 +112,10 @@ public class ClientStore implements Serializable  {
 		}
 	}
 	
+	/**
+	 * lee el fihero xml con todos sus clientes guardados en el. 
+	 * @param url
+	 */
 	public void loadFile(String url) {
 		JAXBContext contexto;
 		try {
@@ -115,6 +128,27 @@ public class ClientStore implements Serializable  {
 			e.printStackTrace();
 		}
 	}
+
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ClientStore other = (ClientStore) obj;
+		if (clientes == null) {
+			if (other.clientes != null)
+				return false;
+		} else if (!clientes.equals(other.clientes))
+			return false;
+		return true;
+	}
+	
+	
 	
 	
 	

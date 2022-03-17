@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,18 +19,18 @@ public class Reservation implements Serializable{
 	
 	@XmlAttribute(name="Código reserva")
 	private String id;
-	private String dateIni;
-	private String dateEnd;
-	private String dateFinished;
+	private LocalDateTime dateIni;
+	private LocalDateTime dateEnd;
+	private LocalDateTime dateFinished;
 	private boolean status;
 	private IClient client; 
 	private IItem item;
 	
 	public Reservation() {
-		this("","","","",false,null,null);
+		this("",null,null,null,false,null,null);
 	}
 
-	public Reservation(String id, String dateIni, String dateEnd, String dateFinished, boolean status, IClient client, IItem item) {
+	public Reservation(String id, LocalDateTime dateIni, LocalDateTime dateEnd, LocalDateTime dateFinished, boolean status, IClient client, IItem item) {
 		this.id = id;
 		this.dateIni = dateIni;
 		this.dateEnd = dateEnd;
@@ -47,27 +48,27 @@ public class Reservation implements Serializable{
 		this.id = id;
 	}
 
-	public String getDateIni() {
+	public LocalDateTime getDateIni() {
 		return dateIni;
 	}
 
-	public void setDateIni(String dateIni) {
+	public void setDateIni(LocalDateTime dateIni) {
 		this.dateIni = dateIni;
 	}
 
-	public String getDateEnd() {
+	public LocalDateTime getDateEnd() {
 		return dateEnd;
 	}
 
-	public void setDateEnd(String dateEnd) {
+	public void setDateEnd(LocalDateTime dateEnd) {
 		this.dateEnd = dateEnd;
 	}
 
-	public String getDateFinished() {
+	public LocalDateTime getDateFinished() {
 		return dateFinished;
 	}
 
-	public void setDateFinished(String dateFinished) {
+	public void setDateFinished(LocalDateTime dateFinished) {
 		this.dateFinished = dateFinished;
 	}
 
