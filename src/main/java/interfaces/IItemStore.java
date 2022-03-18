@@ -9,10 +9,10 @@ public interface IItemStore {
 	IItem searchItem(String name);
 
 	// Actualiza los datos de un item
-	boolean updateProduct(String name, String description, float price);
+	boolean updateItem(String name, String description, float price);
 
 	// Elimina un item
-	boolean removeProduct(IItem i);
+	boolean removeItem(IItem i);
 
 	// Muestra los datos de los items existentes
 	String toString();

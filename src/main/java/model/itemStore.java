@@ -56,7 +56,7 @@ private HashSet<Item> items;
  * @param price El precio que le cambias
  * @return Devuelve true si se a cambiado correctamente
  */
-	public boolean updateProduct(String name, String description, float price) {
+	public boolean updateItem(String name, String description, float price) {
 		// TODO Auto-generated method stub
 		boolean valid = false;
 		Item search = searchItem(name);
@@ -75,7 +75,7 @@ private HashSet<Item> items;
 	 * @param p El Item que le pasas. 
 	 * @return True si a sido eliminado o false si no a sido encontrado y por lo tanto no lo a eliminado.
 	 */
-	public boolean removeProduct(IItem i) {
+	public boolean removeItem(IItem i) {
 		// TODO Auto-generated method stub
 		boolean valid = items.remove(i);
 		return valid;
