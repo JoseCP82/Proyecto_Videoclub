@@ -22,6 +22,7 @@ public class ClientController {
 			gui.showClientMenu();
 			option = gui.validateRangeInt("Elija una opción: ", 0, 5);
 			switchOption(option);
+			gui.showMessage("");
 		} while (option != 0);
 	}
 

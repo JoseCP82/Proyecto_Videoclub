@@ -17,7 +17,6 @@ public class AppController implements IAppController{
 			gui.showMainMenu();
 			option=utils.IOUtils.validateRangeInt("Elija una opción: ",0,4);
 			switchOption(option);
-			
 		}while(option!=0);
 	}
 

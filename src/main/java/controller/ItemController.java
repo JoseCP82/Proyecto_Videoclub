@@ -19,6 +19,7 @@ public class ItemController {
 			gui.showItemMenu();
 			option = gui.validateRangeInt("Elija una opción: ", 0, 5);
 			switchOption(option);
+			gui.showMessage("");
 		} while (option != 0);
 	}
 
@@ -29,6 +30,7 @@ public class ItemController {
 	 * @param Opción elegida por el usuario.
 	 */
 	private void switchOption(int option) {
+		gui.showMessage("");
 		switch (option) {
 			case 1:
 				insertItem();

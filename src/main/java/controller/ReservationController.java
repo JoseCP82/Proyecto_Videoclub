@@ -27,6 +27,7 @@ public class ReservationController {
 			gui.showReservationMenu();
 			option = gui.validateRangeInt("Elija una opción: ", 0, 5);
 			switchOption(option);
+			gui.showMessage("");
 		} while (option != 0);	
 	}
 
@@ -36,6 +37,7 @@ public class ReservationController {
 	 * @param option
 	 */
 	public void switchOption(int option) {
+		gui.showMessage("");
 		switch (option) {
 			case 1:
 				insertReservation();

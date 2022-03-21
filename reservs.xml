@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Reservas>
     <reservs>
-        <dateEnd>2022/04/22 08:04:46</dateEnd>
-        <dateFinished>2022/26/21 08:26:05</dateFinished>
-        <dateIni>2022/04/21 08:04:46</dateIni>
+        <dateEnd>2022/58/22 08:58:35</dateEnd>
+        <dateFinished>2022/38/21 10:38:13</dateFinished>
+        <dateIni>2022/58/21 08:58:35</dateIni>
         <id>Reserv1</id>
         <nameItem>Dd12</nameItem>
         <status>INLOWRESERVE</status>
-    </reservs>
-    <reservs>
-        <dateEnd>2022/31/22 08:31:15</dateEnd>
-        <dateIni>2022/31/21 08:31:15</dateIni>
-        <id>Reserv2</id>
-        <nameItem>Dd12</nameItem>
-        <status>HIGHRESERVE</status>
     </reservs>
 </Reservas>
