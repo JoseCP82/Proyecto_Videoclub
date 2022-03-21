@@ -1,21 +1,15 @@
-package model;
+package dao;
 
-import java.io.File;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Iterator;
+import model.Reservation;
+import model.Status;
+import storage.ReservationStore;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="Reservation Store")
-@XmlAccessorType(XmlAccessType.FIELD)
-public class ReservationStore {
+public class ReservationDAO {
+	
+	private final String URL="reservs.xml";
+	
 	/**
 	 * Set donde se almacenan las reservas
 	 */
@@ -24,10 +18,24 @@ public class ReservationStore {
 	/**
 	 * Constructor de clase
 	 */
-	public ReservationStore() {
-		this.reservs = new HashSet<Reservation>();
+	public ReservationDAO() {
+		reservs = new HashSet<Reservation>();
+		try {
+			reservs = new ReservationStore().loadFile(URL);
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 
+	/**
+	 * Obtiene si el Set contiene elementos o está vacío
+	 * 
+	 * @return True o false si está vacío o no.
+	 */
+	public boolean isEmpty() {
+		return reservs.isEmpty();
+	}
+	
 	/**
 	 * Añade al Set una nueva reserva.
 	 * 
@@ -38,6 +46,7 @@ public class ReservationStore {
 		boolean result = false;
 		if(r!=null && r.getId()!=null) {
 			result=reservs.add(r);
+			new ReservationStore().saveFile(URL, reservs);
 		}
 		return result;
 	}
@@ -53,7 +62,7 @@ public class ReservationStore {
 		if(!reservs.isEmpty() && id!=null) {
 			Iterator<Reservation> it = reservs.iterator();
 			while(it.hasNext()) {
-				 r = it.next();
+				r = it.next();
 				if(!r.getId().equals(id)) {
 					r=null;
 				}
@@ -69,13 +78,14 @@ public class ReservationStore {
 	 * @param dateFinished Fecha en la que finaliza una reserva.
 	 * @return True o false si se realizó o no.
 	 */
-	public boolean updateReservation(String id, LocalDateTime dateFinished) {
+	public boolean updateReservation(String id, String dateFinished, Status status) {
 		boolean result = false;
 		if(!reservs.isEmpty() && id!=null && dateFinished!=null) {
 			Reservation r = searchReservation(id);
 			if(r!=null) {
 				r.setDateFinished(dateFinished);
-				r.setStatus(Status.INLOWRESERVE);
+				r.setStatus(status);
+				new ReservationStore().saveFile(URL, reservs);
 				result=true;
 			}
 		}
@@ -92,43 +102,22 @@ public class ReservationStore {
 		boolean result = false;
 		if(r!=null && !reservs.isEmpty()) {
 			result=reservs.remove(r);
+			new ReservationStore().saveFile(URL, reservs);
 		}
 		return result;
 	}
 	
 	/**
-	 * Almacena todas las reservas existentes en un archivo XML.
+	 * Método que obtiene todos los datos de un cliente y los almacena en un 
+	 * string para mostrarlos por pantalla.
 	 * 
-	 * @param url Nombre del archivo XML.
+	 * @return Cadena con los datos almacenados
 	 */
-	public void saveFile(String url) {
-		JAXBContext contexto;
-		try {
-			contexto=JAXBContext.newInstance(ReservationStore.class);
-			Marshaller m = contexto.createMarshaller();
-			m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, true);
-			m.marshal(this, new File(url));
-		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public String toString() {
+		String result = "";
+		for (Reservation o : reservs) {
+			result += o.toString()+"\n";
 		}
-	}
-	
-	/**
-	 * Carga de un archivo XML las reservas existentes.
-	 * 
-	 * @param url Nombre del archivo XML.
-	 */
-	public void loadFile(String url) {
-		JAXBContext contexto;
-		try {
-			contexto=JAXBContext.newInstance(ReservationStore.class);
-			Unmarshaller um = contexto.createUnmarshaller();
-			ReservationStore newReserv = (ReservationStore)um.unmarshal(new File(url));
-			reservs = newReserv.reservs;
-		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		return result;
 	}
 }

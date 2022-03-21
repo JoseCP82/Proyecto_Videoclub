@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Productos>
+    <products>
+        <key>pp-1</key>
+        <name>pp</name>
+    </products>
+    <products>
+        <key>Pe01</key>
+        <name>Pelicula</name>
+    </products>
+</Productos>

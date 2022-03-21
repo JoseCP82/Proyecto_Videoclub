@@ -2,16 +2,14 @@ package utils;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class IOUtils {
 
 	/**
 	 * Metodo que pide un numero por tecado y valida que sea decimal y positivo.
 	 * 
-	 * @param hace referencia a la frase que mostrarï¿½ para pedir el valor.
-	 * @return devuelve un numero decimal positivo vï¿½lido.
+	 * @param hace referencia a la frase que mostrará para pedir el valor.
+	 * @return devuelve un numero decimal positivo válido.
 	 */
 	public static float validatePositiveFloat(String frase) {
 		Scanner sc = new Scanner(System.in);
@@ -23,7 +21,7 @@ public class IOUtils {
 				numero = sc.nextFloat();
 				valido = true;
 				if (numero < 0) {
-					System.out.println("El nï¿½mero no puede ser negativo.");
+					System.out.println("El número no puede ser negativo.");
 				}
 			} catch (InputMismatchException ex) {
 				System.out.println("Dato incorrecto.");
@@ -38,8 +36,8 @@ public class IOUtils {
 	/**
 	 * Metodo que pide un numero por tecado y valida que sea entero.
 	 * 
-	 * @param hace referencia a la frase que mostrarï¿½ para pedir el valor
-	 * @return devuelve un numero entero vï¿½lido
+	 * @param hace referencia a la frase que mostrará para pedir el valor
+	 * @return devuelve un numero entero válido
 	 */
 	public static int validateInt(String frase) {
 		Scanner sc = new Scanner(System.in);
@@ -64,8 +62,8 @@ public class IOUtils {
 	/**
 	 * Metodo que pide un numero por tecado y valida que sea entero y positivo.
 	 * 
-	 * @param hace referencia a la frase que mostrarï¿½ para pedir el valor.
-	 * @return devuelve un numero entero positivo vï¿½lido.
+	 * @param hace referencia a la frase que mostrará para pedir el valor.
+	 * @return devuelve un numero entero positivo válido.
 	 */
 	public static int validatePositiveInt(String frase) {
 		Scanner sc = new Scanner(System.in);
@@ -78,7 +76,7 @@ public class IOUtils {
 				numero = sc.nextInt();
 				valido = true;
 				if (numero < 0) {
-					System.out.println("El nï¿½mero no puede ser negativo.");
+					System.out.println("El número no puede ser negativo.");
 				}
 			} catch (InputMismatchException ex) {
 				System.out.println("Dato incorrecto.");
@@ -94,17 +92,17 @@ public class IOUtils {
 	 * Metodo que pide un numero por tecado y valida que sea entero y se encuemtre
 	 * entre dos rangos.
 	 * 
-	 * @param Hace  referencia a la frase que mostrarï¿½ para pedir el valor.
+	 * @param Hace  referencia a la frase que mostrará para pedir el valor.
 	 * @param Rango minimo en el que puede estar el numero.
 	 * @param Rango maximo en el que puede estar el numero.
-	 * @return devuelve un numero entero positivo vï¿½lido.
+	 * @return devuelve un numero entero positivo válido.
 	 */
 	public static int validateRangeInt(String frase, int minimo, int maximo) {
 		Scanner sc = new Scanner(System.in);
 		int numero = 0, aux = 0;
 		boolean valido = false;
 
-		if (minimo > maximo) { // Validamos que el nï¿½mero mï¿½nimo y mï¿½ximo corespondan con sus valores.
+		if (minimo > maximo) { // Validamos que el número mínimo y máximo corespondan con sus valores.
 			aux = minimo;
 			minimo = maximo;
 			maximo = aux;
@@ -116,7 +114,7 @@ public class IOUtils {
 				numero = sc.nextInt();
 				valido = true;
 				if (numero < minimo || numero > maximo) {
-					System.out.println("El nï¿½mero debe estar comprendido entre " + minimo + " y " + maximo + ".");
+					System.out.println("El número debe estar comprendido entre " + minimo + " y " + maximo + ".");
 				}
 			} catch (InputMismatchException ex) {
 				System.out.println("Dato incorrecto.");
@@ -147,11 +145,11 @@ public class IOUtils {
 	public static String readString(String texto) {
 		Scanner sc = new Scanner(System.in);
 		System.out.print(texto);
-		return sc.nextLine();
+		return sc.next();
 	}
 
 	/**
-	 * Lee un string del teclado y valida que no estï¿½ vacio
+	 * Lee un string del teclado y valida que no está vacío
 	 * 
 	 * @return el string introducido
 	 */
@@ -162,7 +160,7 @@ public class IOUtils {
 			System.out.print(texto);
 			result = sc.nextLine();
 			if (result.isEmpty()) {
-				System.out.println("El campo no puede estar vacï¿½o.");
+				System.out.println("El campo no puede estar vacío.");
 			}
 		} while (result.isEmpty());
 		return result;
@@ -173,7 +171,7 @@ public class IOUtils {
 	 * o 'n'
 	 * 
 	 * @param frase Frase a mostrar
-	 * @return Caracter vï¿½lido seleccionado
+	 * @return Caracter válido seleccionado
 	 */
 	public static char validateExit(String frase) {
 		Scanner sc = new Scanner(System.in);
@@ -182,7 +180,7 @@ public class IOUtils {
 			System.out.print(frase);
 			salida = sc.next().charAt(0);
 			if (salida != 'S' && salida != 's' && salida != 'N' && salida != 'n') {
-				System.out.println("Opciï¿½n incorrecta.\nIntroduzca (S/N).");
+				System.out.println("Opcionn incorrecta.\nIntroduzca (S/N).");
 			}
 		} while (salida != 'S' && salida != 's' && salida != 'N' && salida != 'n');
 		return salida;
@@ -191,7 +189,7 @@ public class IOUtils {
 	/**
 	 * Comprueba que el DNI introducido sea correcto
 	 * 
-	 * @param frase que se introducirÃ¡
+	 * @param frase que se introducirá¡
 	 * @return devuelve que el dni este escrito de forma correcta.
 	 */
 	public static String validateDni(String frase) {
@@ -199,13 +197,13 @@ public class IOUtils {
 		String dni = "";
 		boolean invalido = false;
 		do {
-			System.out.println(frase);
+			System.out.print(frase);
 			dni = sc.next();
-			readEmptyString(dni);
+			//readEmptyString(dni);
 			if (dni.matches("^[0-9]{8}[\\w]{1}$")) {
 				invalido = true;
 			} else {
-				System.out.println("el DNI " + dni + " no es vÃ¡lido");
+				System.out.println("el DNI " + dni + " no es válido");
 			}
 		} while (!invalido);
 
@@ -225,13 +223,16 @@ public class IOUtils {
 		String number = "";
 
 		do {
-			System.out.println(frase);
+			System.out.print(frase);
 			number = sc.next();
+			/*
 			if (number.matches("^[0-9][^\\Sa-zA-Z]$")) {
 				invalido = true;
 			} else {
 				System.out.println("no se permiten letras");
 			}
+			*/
+			invalido=true;
 		} while (!invalido);
 
 		return number;
@@ -240,7 +241,7 @@ public class IOUtils {
 	/**
 	 * comprueba que se introduzcan solo texto con espacios
 	 * 
-	 * @param frase texto que se introducirÃ¡
+	 * @param frase texto que se introducirá
 	 * @return devuelve el texto
 	 */
 	public static String validateString(String frase) {
@@ -248,12 +249,12 @@ public class IOUtils {
 		boolean invalido = false;
 		String txt = "";
 		do {
-			System.out.println(frase);
+			System.out.print(frase);
 			txt = sc.next();
 			if (txt.matches("^[a-zA-Z\\s]\\D$")) {
 				invalido = true;
 			} else {
-				System.out.println("no se permite numeros");
+				System.out.println("No se permiten números");
 			}
 		} while (!invalido);
 
@@ -271,12 +272,12 @@ public class IOUtils {
 		boolean invalido = false;
 		String key= "";
 		do {
-			System.out.println(frase);
+			System.out.print(frase);
 			key = sc.next();
 			if (key.matches("^[A-Z]{3,3}[-]{1,1}[0-9]{4,4}$")) {
 				invalido = true;
 			} else {
-				System.out.println("la clave tiene que estar en este formato (AAA-9999) ");
+				System.out.print("la clave tiene que estar en este formato (AAA-9999) ");
 			}
 		} while (!invalido);
 		
@@ -286,7 +287,7 @@ public class IOUtils {
 	/**
 	 * comprueba que el nombre introducido empiece por mayuscula y tenga 2 digitos
 	 * 
-	 * @param frase nombre que se introducira
+	 * @param frase nombre que se introducirá
 	 * @return devuelve el nombre
 	 */
 	public static String validateName(String frase) {
@@ -294,7 +295,7 @@ public class IOUtils {
 		boolean invalido = false;
 		String name = "";
 		do {
-			System.out.println(frase);
+			System.out.print(frase);
 			name = sc.next();
 			if (name.matches("^[A-Z][a-z][0-9]{2,2}$")) {
 				invalido = true;

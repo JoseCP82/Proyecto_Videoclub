@@ -1,39 +1,24 @@
 package model;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import interfaces.IClient;
-import interfaces.IItem;
-
-@XmlRootElement(name="Reserva")
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Reservation implements Serializable{
-
+public class Reservation {
+	
 	/**
 	 * Atributos de clase
 	 */
-	private static final long serialVersionUID = 1L;
-	
-	@XmlAttribute(name="Código reserva")
+	private static int NUM_RES=1;
 	private String id;
-	private LocalDateTime dateIni;
-	private LocalDateTime dateEnd;
-	private LocalDateTime dateFinished;
+	private String dateIni;
+	private String dateEnd;
+	private String dateFinished;
 	private Status status;
-	private IClient client; 
-	private IItem item;
+	private String idClient; 
+	private String nameItem;
 	
 	/**
 	 * Constructor por defecto
 	 */
 	public Reservation() {
-		this("Default",null,null,null,null);
+		this(null,null,null,null);
 		this.status=Status.HIGHRESERVE;
 	}
 
@@ -47,13 +32,13 @@ public class Reservation implements Serializable{
 	 * @param client Cliente que realiza la reserva
 	 * @param item Articulo que se desea alquilar
 	 */
-	public Reservation(String id, LocalDateTime dateIni, LocalDateTime dateEnd, IClient client, IItem item) {
-		this.id = id;
+	public Reservation(String dateIni, String dateEnd, String idClient, String nameItem) {
+		this.id = "Reserv"+NUM_RES++;
 		this.dateIni = dateIni;
 		this.dateEnd = dateEnd;
 		this.dateFinished = null;
-		this.client = client;
-		this.item = item;
+		this.idClient = idClient;
+		this.nameItem = nameItem;
 		this.status=Status.HIGHRESERVE;
 	}
 
@@ -80,7 +65,7 @@ public class Reservation implements Serializable{
 	 * 
 	 * @return Fecha de inicio de la reserva
 	 */
-	public LocalDateTime getDateIni() {
+	public String getDateIni() {
 		return dateIni;
 	}
 
@@ -89,7 +74,7 @@ public class Reservation implements Serializable{
 	 * 
 	 * @param dateIni Dato con la fecha de inicio
 	 */
-	public void setDateIni(LocalDateTime dateIni) {
+	public void setDateIni(String dateIni) {
 		this.dateIni = dateIni;
 	}
 
@@ -98,7 +83,7 @@ public class Reservation implements Serializable{
 	 * 
 	 * @return Fecha estimada de la reserva
 	 */
-	public LocalDateTime getDateEnd() {
+	public String getDateEnd() {
 		return dateEnd;
 	}
 
@@ -107,7 +92,7 @@ public class Reservation implements Serializable{
 	 * 
 	 * @param dateEnd Dato con la fecha de finalización estimada
 	 */
-	public void setDateEnd(LocalDateTime dateEnd) {
+	public void setDateEnd(String dateEnd) {
 		this.dateEnd = dateEnd;
 	}
 
@@ -116,7 +101,7 @@ public class Reservation implements Serializable{
 	 * 
 	 * @return Fecha de finalización
 	 */
-	public LocalDateTime getDateFinished() {
+	public String getDateFinished() {
 		return dateFinished;
 	}
 
@@ -125,7 +110,7 @@ public class Reservation implements Serializable{
 	 * 
 	 * @param dateFinished Dato con la fecha de finalización
 	 */
-	public void setDateFinished(LocalDateTime dateFinished) {
+	public void setDateFinished(String dateFinished) {
 		this.dateFinished = dateFinished;
 	}
 
@@ -152,8 +137,8 @@ public class Reservation implements Serializable{
 	 * 
 	 * @return Cliente que realiza la reserva
 	 */
-	public IClient getClient() {
-		return client;
+	public String getIdClient() {
+		return idClient;
 	}
 
 	/**
@@ -161,8 +146,8 @@ public class Reservation implements Serializable{
 	 * 
 	 * @param client Cliente a setear
 	 */
-	public void setClient(IClient client) {
-		this.client = client;
+	public void setClient(String idClient) {
+		this.idClient = idClient;
 	}
 
 	/**
@@ -170,8 +155,8 @@ public class Reservation implements Serializable{
 	 * 
 	 * @return Item reservado
 	 */
-	public IItem getItem() {
-		return item;
+	public String getNameItem() {
+		return nameItem;
 	}
 
 	/**
@@ -179,8 +164,8 @@ public class Reservation implements Serializable{
 	 * 
 	 * @param item Item a setear
 	 */
-	public void setItem(IItem item) {
-		this.item = item;
+	public void setNameItem(String nameItem) {
+		this.nameItem = nameItem;
 	}
 
 	/**
@@ -192,8 +177,8 @@ public class Reservation implements Serializable{
 		if(status==Status.INLOWRESERVE) {
 			isReturn="Articulo devuelto. Alquiler finalizado.";
 		}
-		return "Código de reserva: " + id + "\nFecha de reserva: " + dateIni + "\nFecha entrega estimada: " + dateEnd + "\nFecha entrega final: "
-				+ dateFinished + "\nEstado: " + isReturn + "\nCliente: " + client + "\nProducto: " + item;
+		return "Reserva\n\tCódigo de reserva: " + id + "\n\tFecha de reserva: " + dateIni + "\n\tFecha entrega estimada: " + dateEnd + "\n\tFecha entrega final: "
+				+ dateFinished + "\n\tEstado: " + isReturn + "\n\tCliente: " + idClient + "\n\tProducto: " + nameItem;
 	}
 
 	/**

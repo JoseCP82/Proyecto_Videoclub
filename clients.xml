@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Clientes>
+    <clients>
+        <id>12345678q</id>
+        <name>jose</name>
+        <phone>111111111</phone>
+        <time>2022/21/21 06:21:22</time>
+    </clients>
+    <clients>
+        <id>12345678w</id>
+        <name>Paco</name>
+        <phone>444444444</phone>
+        <time>2022/30/21 08:30:39</time>
+    </clients>
+</Clientes>

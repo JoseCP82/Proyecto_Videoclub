@@ -3,14 +3,14 @@ package controller;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import dao.ClientDAO;
 import gui.Gui;
 import model.Client;
-import model.ClientStore;
 
 public class ClientController {
-
+	 
 	Gui gui = new Gui();
-	ClientStore cs = new ClientStore();
+	ClientDAO cd = new ClientDAO();
 
 	/**
 	 * Método que inicia el uso de la clase. Muestra el menú referente a las
@@ -20,7 +20,7 @@ public class ClientController {
 		int option = -1;
 		do {
 			gui.showClientMenu();
-			option = utils.IOUtils.validaEntero("Elija una opción: ", 0, 5); //Modificar y usar el metodo de la clase Gui
+			option = gui.validateRangeInt("Elija una opción: ", 0, 5);
 			switchOption(option);
 		} while (option != 0);
 	}
@@ -32,12 +32,13 @@ public class ClientController {
 	 * @param Opción elegida por el usuario.
 	 */
 	private void switchOption(int option) {
+		gui.showMessage("");
 		switch (option) {
 			case 1:
 				insertClient();
 				break;
 			case 2:
-				if(!cs.isEmpty()) {
+				if(!cd.isEmpty()) {
 					searchClient();
 				}
 				else {
@@ -45,24 +46,24 @@ public class ClientController {
 				}
 				break;
 			case 3:
-				if(!cs.isEmpty()) {
-					updateClient();
-				}
-				else {
-					gui.showMessage("No existen clientes aún.");
-				}
-				break;
-			case 4:
-				if(!cs.isEmpty()) {
+				if(!cd.isEmpty()) {
 					removeClient();
 				}
 				else {
 					gui.showMessage("No existen clientes aún.");
 				}
 				break;
+			case 4:
+				if(!cd.isEmpty()) {
+					updateClient();
+				}
+				else {
+					gui.showMessage("No existen clientes aún.");
+				}
+				break;
 			case 5:
-				if(!cs.isEmpty()) {
-					gui.showMessage(cs.toString());
+				if(!cd.isEmpty()) {
+					gui.showMessage(cd.toString());
 				}
 				else {
 					gui.showMessage("No existen clientes aún.");
@@ -80,18 +81,33 @@ public class ClientController {
 	 * Indica si la acción se realizó o no con éxito.
 	 */
 	private void insertClient() {
-		String id = gui.validatedni("Inserte el Dni del cliente: ");
-		String name = gui.validateString("Inserte el nombre del cliente: ");
-		String phone = gui.validatePhone("Inserte el teléfono del cliente: ");
-		String date = new SimpleDateFormat("yyyy/mm/dd hh:mm:ss").format(Calendar.getInstance().getTime());
-		if(cs.addClient(new Client(id,name,phone,date))) {
-			gui.showMessage("Alta realizada correctamente.");
+		String id = gui.validateDni("Inserte el Dni del cliente: ");
+		if(cd.searchClient(id)==null) {
+			String name = gui.readString("Inserte el nombre del cliente: ");
+			String phone = gui.validatePhone("Inserte el teléfono del cliente: ");
+			String date = new SimpleDateFormat("yyyy/mm/dd hh:mm:ss").format(Calendar.getInstance().getTime());
+			if(cd.addClient(new Client(id,name,phone,date))) {
+				gui.showMessage("Alta realizada correctamente.");
+			}
+			else {
+				gui.showMessage("No se pudo dar de alta al cliente.");
+			}
 		}
 		else {
-			gui.showMessage("No se pudo dar de alta al cliente.");
+			gui.showMessage("El cliente ya existe en la base de datos.");
 		}
 	}
 
+	/**
+	 * Busca un cliente por su identificacicón.
+	 * 
+	 * @param id Identificador del cliente
+	 * @return Devuelve el cliente encontrado o null si no existe.
+	 */
+	public Client searchClient(String id) {
+		return cd.searchClient(id);
+	}
+	
 	/**
 	 * Busca un cliente y muestra sus datos en caso de encontrarse en alta.
 	 * 
@@ -99,8 +115,8 @@ public class ClientController {
 	 */
 	
 	public Client searchClient() {
-		String id = gui.validatedni("Inserte el DNI del cliente a buscar: ");
-		Client c=cs.searchClient(id);
+		String id = gui.validateDni("Inserte el DNI del cliente a buscar: ");
+		Client c=cd.searchClient(id);
 		if(c!=null) {
 			gui.showMessage(c.toString());
 		}
@@ -117,9 +133,15 @@ public class ClientController {
 		Client c = searchClient();
 		boolean result = false;
 		if(c!=null) {
-			String name = gui.validateString("Inserte el nuevo  nombre del cliente: ");
+			String name = gui.readString("Inserte el nuevo nombre del cliente: ");
 			String phone = gui.validatePhone("Inserte el nuevo teléfono del cliente: ");
-			result = cs.updateClient(c.getId(), name, phone);
+			if(name=="") {
+				name=c.getName();
+			}
+			if(phone=="") {
+				phone=c.getPhone();
+			}
+			result = cd.updateClient(c.getId(), name, phone);
 		}
 		if(result) {
 			gui.showMessage("Datos del cliente actualizados con éxito.");
@@ -136,7 +158,7 @@ public class ClientController {
 		Client c = searchClient();
 		boolean result = false;
 		if(c!=null){
-			result=cs.removeClient(c);
+			result=cd.removeClient(c);
 		}
 		if(result) {
 			gui.showMessage("Cliente dado de baja con éxito.");

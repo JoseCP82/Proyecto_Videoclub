@@ -15,8 +15,9 @@ public class AppController implements IAppController{
 		int option=-1;
 		do {
 			gui.showMainMenu();
-			option=utils.IOUtils.validaEntero("Elija una opción: ",0,4); //Modificar y usar el metodo de la clase Gui
+			option=utils.IOUtils.validateRangeInt("Elija una opción: ",0,4);
 			switchOption(option);
+			
 		}while(option!=0);
 	}
 
@@ -26,6 +27,7 @@ public class AppController implements IAppController{
 	 * @param Opción elegida por el usuario.
 	 */
 	public void switchOption(int option) {
+		gui.showMessage("");
 		switch(option) {
 			case 1:
 				new ClientController().run();

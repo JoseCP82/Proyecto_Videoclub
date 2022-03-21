@@ -47,9 +47,8 @@ public class Client implements IClient {
 
 	@Override
 	public String toString() {
-		return "\nCliente=" + "\n\tId=" + id + "\n\tNombre=" + name + "\n\tTelefono=" + phone + "\n\tFecha de Alta=" + time;
+		return "Cliente=" + "\n\tId=" + id + "\n\tNombre=" + name + "\n\tTelefono=" + phone + "\n\tFecha de Alta=" + time;
 	}
-	
 	
 	/**
 	 * Compara si dos clientes son iguales
@@ -71,15 +70,5 @@ public class Client implements IClient {
 		}
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

@@ -1,25 +1,25 @@
 package model;
 
-public class Product {
+import interfaces.IProduct;
+
+public class Product implements IProduct { 
+	
+	private static int id=1;
 	private String key;
 	private String name;
-	
 	
 	/**
 	 * Contrustor por defecto
 	 */
 	public Product() {
-		super();
-		this.key = "";
-		this.name = "Desconocido";	
+		this("De"+id,"Desconocido");
 	}
 	/**
-	 * Contructor con Full equip
+	 * Contructor con parametros
 	 * @param key
 	 * @param name
 	 */
 	public Product(String key, String name) {
-		super();
 		this.key = key;
 		this.name = name;
 	}
@@ -57,7 +57,7 @@ public class Product {
 	 */
 	@Override
 	public String toString() {
-		return "Product [key=" + key + ", name=" + name + "]";
+		return "Producto" + "\n\tId= " + key + "\n\tNombre= " + name;
 	}
 
 	@Override

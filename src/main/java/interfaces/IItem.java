@@ -22,9 +22,6 @@ public interface IItem {
 	// Compara la existencia de un item por el atributo name
 	boolean equals(Object o);
 
-	// Obtiene el hash de un item
-	int hashCode();
-
 	// Obtiene los datos de un item
 	String toString();
 }

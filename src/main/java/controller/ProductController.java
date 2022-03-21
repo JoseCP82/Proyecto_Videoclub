@@ -1,13 +1,13 @@
 package controller;
 
+import dao.ProductDAO;
 import gui.Gui;
 import model.Product;
-import model.ProductStore;
 
 public class ProductController {
 	
 	Gui gui = new Gui();
-	ProductStore ps = new ProductStore();
+	ProductDAO pd = new ProductDAO();
 
 	/**
 	 * Método que inicia el uso de la clase. Muestra el menú referente a las
@@ -17,7 +17,7 @@ public class ProductController {
 		int option = -1;
 		do {
 			gui.showProductMenu();
-			option = utils.IOUtils.validaEntero("Elija una opción: ", 0, 5); //Modificar y usar el metodo de la clase Gui
+			option = gui.validateRangeInt("Elija una opción: ", 0, 5);
 			switchOption(option);
 		} while (option != 0);
 	}
@@ -34,7 +34,7 @@ public class ProductController {
 				insertProduct();
 				break;
 			case 2:
-				if(!ps.isEmpty()) {
+				if(!pd.isEmpty()) {
 					searchProduct();
 				}
 				else {
@@ -42,24 +42,24 @@ public class ProductController {
 				}
 				break;
 			case 3:
-				if(!ps.isEmpty()) {
-					updateProduct();
-				}
-				else {
-					gui.showMessage("No existen productos aún.");
-				}
-				break;
-			case 4:
-				if(!ps.isEmpty()) {
+				if(!pd.isEmpty()) {
 					removeProduct();
 				}
 				else {
 					gui.showMessage("No existen productos aún.");
 				}
 				break;
+			case 4:
+				if(!pd.isEmpty()) {
+					updateProduct();
+				}
+				else {
+					gui.showMessage("No existen productos aún.");
+				}
+				break;
 			case 5:
-				if(!ps.isEmpty()) {
-					gui.showMessage(ps.toString());
+				if(!pd.isEmpty()) {
+					gui.showMessage(pd.toString());
 				}
 				else {
 					gui.showMessage("No existen productos aún.");
@@ -77,13 +77,18 @@ public class ProductController {
 	 * Indica si la acción se realizó o no con éxito.
 	 */
 	private void insertProduct() {
-		String key = gui.validateKey("Inserte la clave del producto: ");
-		String name = gui.validateString("Inserte el nombre del producto: ");
-		if(ps.addClient(new Product(key, name))) {
-			gui.showMessage("Producto almacenado correctamente.");
+		String key = gui.validateName("Inserte el código del producto: ");
+		if(pd.searchProduct(key)==null) {
+			String name = gui.readString("Inserte el nombre del producto: ");
+			if(pd.addProduct(new Product(key,name))) {
+				gui.showMessage("Producto almacenado correctamente.");
+			}
+			else {
+				gui.showMessage("No se pudo almacenar el producto.");
+			}
 		}
 		else {
-			gui.showMessage("No se pudo almacenar el producto.");
+			gui.showMessage("El producto ya existe.");
 		}
 	}
 
@@ -93,8 +98,8 @@ public class ProductController {
 	 * @return Devuelve el producto encontrado o null si no existe.
 	 */
 	public Product searchProduct() {
-		String key = gui.validateKey("Inserte la clave del producto a buscar: ");
-		Product p=ps.searchProduct(key);
+		String key = gui.validateName("Inserte la clave del producto a buscar: ");
+		Product p=pd.searchProduct(key);
 		if(p!=null) {
 			gui.showMessage(p.toString());
 		}
@@ -111,8 +116,11 @@ public class ProductController {
 		Product p = searchProduct();
 		boolean result = false;
 		if(p!=null) {
-			String name = gui.validateString("Inserte el nuevo nombre del producto: ");
-			result = ps.updateProduct(p.getKey(),name);
+			String name = gui.readString("Inserte el nuevo nombre del producto: ");
+			if(name=="") {
+				name=p.getName();
+			}
+			result = pd.updateProduct(p.getKey(),name);
 		}
 		if(result) {
 			gui.showMessage("Datos del producto actualizados con éxito.");
@@ -129,7 +137,7 @@ public class ProductController {
 		Product p = searchProduct();
 		boolean result=false;
 		if(p!=null) {
-			result=ps.removeProduct(p);
+			result=pd.removeProduct(p);
 		}
 		if(result) {
 			gui.showMessage("Producto eliminado con éxito.");
