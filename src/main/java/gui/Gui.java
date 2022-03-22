@@ -94,6 +94,7 @@ public class Gui implements IGUI {
 		System.out.println(message);
 	}
 
+
 	/**
 	 * muestra un mensaje que valida que sea decimal.
 	 */
